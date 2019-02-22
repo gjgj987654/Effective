@@ -8,7 +8,7 @@ import org.junit.Test;
  * 冒泡排序
  */
 public class BubbleSort {
-
+	//test
     @Test
     public void bubbleSort(){
         int [] a={7,3,8,9,6,4,2,1,0,5};
