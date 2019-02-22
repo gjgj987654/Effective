@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.98.62:3306/pushsystem_test
+    username: root
+    password: sa
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://42.62.107.233:38141;DatabaseName=duxiu_user
+#    username: duxiutest
+#    password: duxiutest
+#    
+  #关闭缓存及时刷新
+  thymeleaf:
+    
+    cache: false
+  #热部署生效
+  devtools:
+    restart:
+      enabled: true
+server:
+  port: 8080
+mybatis:
+  type-aliases-package: com.manage.bean
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+

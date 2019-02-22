@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>推送信息配置</title>
+    <link rel="stylesheet" type="text/css" href="/static/js/jquery-easyui-1.5.3/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/js/jquery-easyui-1.5.3/themes/icon.css"/>
+    <script type="text/javascript" src="/static/js/jquery-easyui-1.5.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/js/pushinfojs/pushinfo_edit.js"></script>
+    <script type="text/javascript" src="/static/js/pushinfojs/pushinfo.js"></script>
+</head>
+<body>
+<div id="easyui_toolbar" region="north" border="false"
+     style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">
+    <div style="float: left;">
+        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onClick="addPushInfo()">新增</a>
+    </div>
+
+    <div class="datagrid-btn-separator"></div>
+
+    <div style="float: left;">
+        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onClick="editPushInfo()">编辑</a>
+    </div>
+
+    <div class="datagrid-btn-separator"></div>
+
+    <div style="float: left;">
+        <a href="#" class="easyui-linkbutton" plain="true"
+           icon="icon-remove" onClick="deletePushInfo()">删除</a>
+    </div>
+    <div class="datagrid-btn-separator"></div>
+    <div style="float: left;">
+        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-ok" onClick="impushinfo()">推送</a>
+    </div>
+    <div class="datagrid-btn-separator"></div>
+    <div style="float: left;">
+        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-no" onClick="stopPush()">停止推送</a>
+    </div>
+      <div class="datagrid-btn-separator"></div>
+    <div style="float: left;">
+          <span>ID:</span>
+          <input id="search_id" style="line-height:20px;width: 60px;border:1px solid #ccc">
+          <span>推送名称:</span>
+          <input id="search_name" style="line-height:20px;border:1px solid #ccc;width: 60px;">
+          <span>推送类型:</span>
+          <select id="search_pushtype" class="easyui-combobox" style="height:26px;width:85px;">
+                <option value="" selected>全部</option>
+                <option value="1">HTTP</option>
+                <option value="2">KAFKA</option>
+                <option value="3">消息队列</option>
+                <option value="4">TCP</option>
+          </select>
+        <span>推送周期类型:</span>
+        <select id="search_cycletype" class="easyui-combobox" style="height:26px;width:85px;">
+            <option value="" selected>全部</option>
+            <option value="1">实时</option>
+            <option value="2">按时间推送</option>
+        </select>
+        <span>推送状态:</span>
+        <select id="search_stat" class="easyui-combobox" style="height:26px;width:85px;">
+            <option value="" selected>全部</option>
+            <option value="1">推送成功</option>
+            <option value="0">推送失败</option>
+        </select>
+
+          <a href="#" class="easyui-linkbutton" icon="icon-search" plain="true"  onclick="doSearch()">搜索</a>
+    </div>
+  </div>
+
+</div>
+<div class="easyui-panel" data-options="fit:true,border:false">
+    <table id="pushinfolist" class="easyui-datagrid" title="推送信息配置"
+           data-options="loadMsg:'数据加载中请稍后……',border:false,fit:true,url:'/pushinfo/findpagepushinfo',fitColumns:true,rownumbers:true,singleSelect:true,pagination:true,method:'get',toolbar:'#easyui_toolbar',pageSize:20,pageList:[2,5,10,20]">
+
+        <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true"></th>
+            <th data-options="field:'id',width:30" align="center">ID</th>
+
+            <th data-options="field:'pushName',width:40" align="center">推送名称</th>
+            <th data-options="field:'pushAddr',width:150" align="left">推送信息</th>
+            <th data-options="field:'pushType',formatter:function (value,row,index){
+                      if(value==1){return 'HTTP';}else if(value==2){ return 'Kafka';}else if(value==3){return 'MQ消息队列'}else{return 'TCP';}},width:50,align:'center'">
+                推送类型
+            </th>
+            <th data-options="field:'cycleType',formatter:function (value,row,index){if(value==1){return '实时';}else{return '定时';}},width:30,align:'center'">
+                推送周期类型
+            </th>
+            <th data-options="field:'sourceInfo',width:100" align="left">来源配置信息</th>
+            <th data-options="field:'sourceType',formatter:function (value,row,index){if(value==1){return '普通文件';}else if(value==2){return 'Hadoop';}else if(value==3){return 'Kafka';}else{return '未定义';}},width:40,align:'center'">
+                来源类型
+            </th>
+            <th data-options="field:'log',formatter:function (value,row,index){if(value==1){return '需要';}else if(value==0){return '不需要';}},width:30,align:'center'">
+                日志
+            </th>
+            <th data-options="field:'alarm',formatter:function (value,row,index){if(value==1){return '需要';}else if(value==0){return '不需要';}},width:30,align:'center'">
+                报警
+            </th>
+            <th data-options="field:'pushStat',formatter:function (value,row,index){if(value==1){return '推送成功';}else if(value==0){return '推送失败';}else if(value==2){return '推送中...';}else if(value==3){return '已停止';}else{return '未推送';}},width:40,align:'center'">
+                推送状态
+            </th>
+            <th data-options="field:'skipError',formatter:function (value,row,index){if(value==1){return '是';}else{return '否';}},width:30,align:'center'">
+                跳过错误
+            </th>
+            <th data-options="field:'createTime',formatter:function (value,row,index){return convertTime(value);},width:80,align:'center'">
+                创建时间
+            </th>
+            <th data-options="field:'updateTime',formatter:function (value,row,index){return convertTime(value);},width:80,align:'center'">
+                修改时间
+            </th>
+            <th data-options="hidden:true,field:'sourceKafkaInfo',width:80,align:'center'">
+                kafka信息
+            </th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+
+<div id="pushinfoEditWindow" class="easyui-window" title="推送信息"
+     data-options="shadow:true,minimizable:false,collapsible:false,draggable:false,resizable:false,modal:true,closed:true,iconCls:'icon-save',href:'/pushinfo/page/pushinfo_edit'"
+     style="width: 40%; height: 60%; padding: 10px;"></div>
+
+</body>
+
+</html>
