@@ -1,6 +1,6 @@
-package com.manage.thread.runnabletest;
+package com.manage.basejava.thread.runnabletest;
 
-import com.manage.thread.NewRunnable;
+import com.manage.basejava.thread.NewRunnable;
 /**
  * @auther gaojian
  * @date 2019/2/20 17:44

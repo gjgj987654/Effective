@@ -1,4 +1,4 @@
-package com.manage.extend;
+package com.manage.basejava.extend;
 
 /**
  * @auther gaojian
@@ -6,7 +6,7 @@ package com.manage.extend;
  */
 
 
-public class Test {
+class Test {
     Person person = new Person("Test");
 
     static {
@@ -19,6 +19,7 @@ public class Test {
 
     public static void main(String[] args) {
         new MyClass();
+
     }
 }
 

@@ -1,11 +1,8 @@
-package com.manage.thread.threadpool;
+package com.manage.basejava.thread.threadpool;
 
 import com.manage.DemoApplication;
-import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 

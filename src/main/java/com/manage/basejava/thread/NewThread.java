@@ -1,4 +1,4 @@
-package com.manage.thread;
+package com.manage.basejava.thread;
 
 /**
  * @auther gaojian

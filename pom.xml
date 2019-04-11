@@ -153,13 +153,13 @@
 		<dependency>
 			<groupId>com.chaoxing</groupId>
 			<artifactId>duxiuframe-core</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<version>1.0.3-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.chaoxing</groupId>
 			<artifactId>duxiuframe-utils</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.0.3-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	

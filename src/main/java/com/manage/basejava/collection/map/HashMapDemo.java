@@ -1,4 +1,4 @@
-package com.manage.collection.map;
+package com.manage.basejava.collection.map;
 
 import java.util.HashMap;
 import java.util.Map;

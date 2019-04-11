@@ -1,6 +1,6 @@
-package com.manage.thread.threadpool;
+package com.manage.basejava.thread.threadpool;
 
-import com.manage.thread.NewThreadPoolThread;
+import com.manage.basejava.thread.NewThreadPoolThread;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;

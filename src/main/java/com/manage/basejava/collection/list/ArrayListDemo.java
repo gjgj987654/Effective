@@ -1,4 +1,4 @@
-package com.manage.collection.list;
+package com.manage.basejava.collection.list;
 
 import java.util.ArrayList;
 import java.util.List;

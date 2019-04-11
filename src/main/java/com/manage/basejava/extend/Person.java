@@ -1,4 +1,4 @@
-package com.manage.extend;
+package com.manage.basejava.extend;
 
 /**
  * @auther gaojian
